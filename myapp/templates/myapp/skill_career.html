@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/css/skill_career.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Skill Sample</title>
+  
+</head>
+<body>
+<div class="top-container" id="statsContainer">
+    <div class="title"> SKILL &nbsp; SPRINT</div>
+    <p style="color: white; margin-top: 60px;">Current user: {{ request.user }}</p>
+    
+    <div class="stats-container">
+        <div class="stats"><i class="fas fa-coins"></i> Points: <span id="points">{{ careerPoints }}</span></div>
+        <div class="stats progress-container">
+            <progress id="progress" value="{{ careerProgress }}" max="100"></progress> 
+            <span id="progress-text" style="margin-left: 5px;">{{ careerProgress }}%</span>
+        </div>
+        <div class="stats"><i class="fas fa-award"></i> Badge: <span id="badge">{{ careerBadge }}</span></div>
+    </div> 
+    <button class="stats-toggle-button" onclick="toggleStats()">☰ Stats</button>
+</div>
+
+<a class="back-button" href="{% url 'home' %}">&#9664; Home</a>
+
+<div class="task-tab">
+    <h2>Add Tasks</h2>
+    <button type="button" onclick="showForm()">+</button>
+</div>
+
+
+
+<form id="task-form" method="POST" action="{% url 'add_task' %}">
+    {% csrf_token %}
+    <div class="task-form" id="taskForm">
+
+        <div class="form-group">
+            <label>Main Task:</label>
+            <input type="text" id="task-name" name="title" placeholder="Enter task" required style="padding: 7px;" />
+        </div>
+
+        <div class="form-group">
+            <label>Categories:</label>
+            <select id="category" name="category" required>
+                <option value="" disabled selected>Select category</option>
+                <option value="Technical">Technical</option>
+                <option value="Communication">Communication</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Duration:</label>
+            <select id="duration" name="duration" required>
+                <option value="" disabled selected>Select duration</option>
+                <option value="15days">15 Days</option>
+                <option value="1 Month">1 Month</option>
+                <option value="2 Month">2 Months</option>
+                <option value="3 Month">3 Months</option>
+                <option value="6 Month">6 Months</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Sub Tasks:</label>
+            <button type="button" id="add-subtask" 
+                    style="margin-top: 6px; width: 30%; border-radius: 5px; padding: 6px; font-weight: bold;">
+                ADD SUB TASK
+            </button>
+            <div id="subtasks-list">
+                <input type="text" name="subtasks[]" placeholder="Enter subtask" class="subtask-input" required />
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+            <button type="submit" style="width: 100px; padding: 8px; font-weight: bold; border-radius: 7px;">SAVE</button>
+            <button type="button" onclick="cancelTask()" style="width: 100px; padding: 8px; font-weight: bold; border-radius: 7px;">CANCEL</button>
+        </div>
+    </div>
+</form>
+
+{% if messages %}
+<div id="statusMessage" style="
+    position: fixed; 
+    top: 80px; left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745; 
+    color: white;
+    padding: 12px 30px; 
+    border-radius: 8px;
+    font-size: 18px; 
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 9999;">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+
+<h2 style="text-align:center; margin-top: 30px;">Work In Progress</h2>
+
+<div id="task-container" style="max-width: 600px; margin: auto;">
+   {% for task in tasks %}
+<div class="task-box" style="border: 1px solid #ccc; padding: 25px; margin-bottom: 10px; border-radius: 8px; background-color:rgb(1, 115, 98); color: white;" data-task-id="{{ task.id }}">
+    <h3>{{ task.title }}</h3>
+    <p><strong>Category:</strong> {{ task.category }}</p>
+    <p><strong>Duration:</strong> {{ task.duration }}</p>
+
+    <div class="subtasks" style="margin-top: 10px;">
+        {% for subtask in task.subtasks.all %}
+        <div>
+            <input type="checkbox" class="subtask-checkbox" data-subtask-id="{{ subtask.id }}" {% if subtask.is_completed %}checked{% endif %}>
+            {{ subtask.title }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="task-action-buttons">
+        <button class="task-button-edit" data-task-id="{{ task.id }}">Edit</button>
+        <button class="task-button-delete" data-task-id="{{ task.id }}"> Delete</button>
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+{% if show_login_alert %}
+<script>alert("Please log in to access this page.");</script>
+{% endif %}
+
+<script src="{% static 'myapp/js/skill_career.js' %}"></script>
+</body>
+</html>

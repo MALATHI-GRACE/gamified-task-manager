@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamified Task Manager</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
+ 
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fef8ec;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">🎮 Gamified Task Manager</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto d-flex align-items-center gap-2">
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="top-button-link" id="login-btn">
+                            <button class="top-button">Log In</button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}" class="top-button-link">
+                                <button class="top-button">Dashboard</button>
+                            </a>
+                        {% else %}
+                            <a href="#" class="top-button-link" onclick="alert('Please sign in first.')">
+                                <button class="top-button">Dashboard</button>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% if messages %}
+    <div class="message-container">
+      {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+{% endif %}
+
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Left Section: -->
+            <div class="col-md-6 col-12">
+
+                <h3>Focus Zones:</h3>
+              
+                <div class="category">
+                    <a href="{% url 'personal' %}">
+                    <h2>PERSONAL  &nbsp; BLOOM</h2>
+                    <p>Track your personal development and mindfulness goals.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'skill' %}">
+                            <h2>SKILL &nbsp; SPRINT</h2>
+                            <p>Focus on your professional development tasks.</p>
+                        </a>
+                    {% else %}
+                        <a href="#" onclick="alert('Please log in to access this task.')">
+                            <h2>SKILL &nbsp; SPRINT</h2>
+                            <p>Focus on your professional development tasks.</p>
+                        </a>
+                    {% endif %}
+                </div>              
+            </div>
+
+            <!-- Right Section: -->
+            <div class="col-md-6 d-flex flex-column align-items-center">
+                <div class="circle">
+                    <div class="quote" id="quoteDisplay">
+                        "Success is the sum of small efforts, repeated day in and day out."
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Rotating Quotes -->
+    <script src="{% static 'myapp/js/home.js' %}"></script>
+ 
+ <hr>
+
+    
+ <footer class="last" style="  background-color: #fef8ec; color: #003049;font-weight: bold; padding: 30px 0; font-family:'Times New Roman', Times, serif; margin-top: 10px;">
+    <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <p>Support</p>
+            <p>FAQ</p>
+            <p>Contact Us</p>
+        </div>
+        <div>
+            <p>About</p>
+            <p>Our Vision</p>
+            <p>Creators</p>
+        </div>
+        <div>
+            <p>Inner Ascent</p>
+            <p>Skill Sprint</p>
+            <p>Vision Craft</p>
+        </div>
+        <div>
+            <p>Get Help</p>
+            <p>Guides</p>
+            <p>Customers Support</p>
+        </div>
+        <div>
+            <p>Feedback</p>
+            <p>Experience</p>
+            <p>Reviews</p>
+        </div>
+        <div>
+            <p>Legal</p>
+            <p>Terms</p>
+            <p>Privacy Policy</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <p style="text-align: center; margin-top: 25px;">&copy; 2025 &nbsp; Gamified Task Manager. &nbsp; All Rights Reserved.</p>
+    <p style="text-align: center;">
+        Follow us on:&nbsp; &nbsp;
+        <a href="#" style="color: #003049;; text-decoration: none;"><i class="fab fa-facebook-f"></i></a>&nbsp;&nbsp;&nbsp;
+        <a href="#" style="color: #003049;; text-decoration: none;"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+        <a href="#" style="color: #003049;; text-decoration: none;"><i class="fab fa-instagram"></i></a>
+    </p>
+</footer>
+
+</body>
+</html>
+
+
+
+<!-- 
+❌ Problem:
+“People struggle to stay consistent and motivated with their tasks — they start strong but lose momentum after a few days.”
+
+✅ Why it's common:
+Everyone has tasks, but procrastination, lack of motivation, and no reward system lead to burnout or task abandonment.
+People forget tasks, underestimate time, or feel overwhelmed when they see a long list.
+
+✅ Possible Solution :
+“Gamified Task Manager with Streaks, Rewards & Motivation Boosters”
+
+🎯 Daily Goals & Streaks to build habit.
+
+🏆 Points & Badges for completing tasks.
+
+📅 Smart Reminders and priority labels.
+
+💬 Motivational quotes
+
+📊 Dashboard to track personal growth. -->
+

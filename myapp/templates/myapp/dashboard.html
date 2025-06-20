@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link rel="stylesheet" href="{% static 'myapp/css/dashboard.css' %}">
+   
+</head>
+<body>
+
+    <div class="top-container">
+        <div class="title">🎮 Gamified Task Manager</div>
+         <p style="color: white; margin-top: 30px;">Current user: {{ request.user }}</p>
+        <div class="top-buttons">
+            <a href="{% url 'home' %}"><button>🏠 Home</button></a>
+            <a href="{% url 'logout' %}"> <button>🔒 Logout</button></a>
+                
+        </div>
+    </div>
+    
+
+    <div class="container">
+        <div class="outer-container">
+            <div class="category">
+                <h2>PERSONAL BLOOM:</h2>
+                <div class="info-row"><span>Streak:</span> <span id="personalStreak"></span></div>
+                <div class="info-row"><span>Points:</span> <span id="personalPoints">0</span></div>
+                <div class="info-row"><span>Badge:</span> <span id="personalBadge">None</span></div>
+                <div class="info-row"><span>Task Completed:</span> <span id="personalTasks">0/8</span></div>
+                <div class="info-row progress-container">
+                    <span>Progress:</span>
+                    <div class="bar-container">
+                        <div class="progress-bar">
+                            <div class="progress" id="personalProgress"></div>
+                        </div>
+                    </div>    
+                    <span id="personalProgressText" class="progress-text" ></span>
+            </div>
+            <a href="{% url 'personal' %}" class="resume-btn">Resume</a>
+        </div>
+    </div>
+        
+    <div class="outer-container">
+        <div class="category">
+            <h2>SKILL SPRINT:</h2>
+            <div class="info-row"><span>Points:</span> <span id="skillPoints">{{ careerPoints }}</span></div>
+            <div class="info-row"><span>Badge:</span> <span id="skillBadge">{{ careerBadge }}</span></div>
+            <div class="info-row"><span>Category:</span> <span id="categoryCount">{{ categoryCount }}</span></div>
+            <div class="info-row"><span>Tasks Completed:</span> <span id="careerTasks">{{ careerTasksCompleted }}</span></div>
+            <div class="info-row progress-container">
+                <span>Progress:</span>
+                <div class="bar-container">
+                    <div class="progress-bar">
+                        <div class="progress" id="skillProgress"></div>
+                    </div>
+                </div>
+                <span id="skillProgressText" class="progress-text" ></span> 
+            </div>
+            <a href="{% url 'skill' %}" class="resume-btn">Resume</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-columns">
+            <div>
+                <p>Support</p>
+                <p>FAQ</p>
+                <p>Contact Us</p>
+            </div>
+            <div>
+                <p>About</p>
+                <p>Our Vision</p>
+                <p>Meet the Creators</p>
+            </div>
+            <div>
+                <p>Inner Ascent</p>
+                <p>Skill Sprint</p>
+                <p>Vision Craft</p>
+            </div>
+            <div>
+                <p>Get Help</p>
+                <p>Guides</p>
+                <p>Customer Support</p>
+            </div>
+            <div>
+                <p>Feedback</p>
+                <p>Experience</p>
+                <p>Reviews</p>
+            </div>
+            <div>
+                <p>Legal</p>
+                <p>Privacy Policy</p>
+                <p>Terms of Service</p>
+            </div>
+        </div>
+        <hr>
+        <div class="copyright">
+            <p>&copy; 2025 Gamified Task Manager. All Rights Reserved.</p>
+            <p class="social-icons">
+                Follow us on:
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+            </p>
+        </div>
+    </footer>
+
+    <script src="{% static 'myapp/js/dashboard.js' %}"></script>
+
+</body>
+</html>

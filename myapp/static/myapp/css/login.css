@@ -1,0 +1,194 @@
+        body {
+            background: linear-gradient(to right, #ffcc00 30%, white 30% );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .back-button {
+            background: #f0c101;
+            color: white;
+            text-decoration: none;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            z-index: 999;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            height: 900px;  
+        }
+        .panel {
+            width: 400px; 
+            margin: 20px;
+            padding: 35px;
+            box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+        }
+        .left-panel, .right-panel {
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            height: 520px;    
+        }
+        .left-panel {
+            color: #e6b800;
+            background: white;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            left: 13%;
+            top: -4%;
+        }
+        .right-panel {
+            background-color: #ffcc00;
+            padding: 40px 40px;
+            border-radius: 20px;
+            position: relative;
+            left: 15%;
+            top: 5%;
+        }
+        .right-panel2 {
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            height: 520px;
+            background-color: #ffcc00;
+            padding: 10px 35px;
+            border-radius: 20px;
+            position: relative;
+            left: 15%;
+            top: 5%;
+        }
+        .btn-custom {
+            background-color: #ffcc00;
+            border: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .btn-custom:hover {
+            background-color: #e6b800;
+        }
+
+        #RegisterPanel2 .btn-custom {
+            margin-top: 10px; 
+        }
+
+        img {
+            width: 190px;
+            height: 240px;
+            object-fit: cover;
+            margin-top: 30px;
+            border-radius: 20%;
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 13px;
+        }
+        .hidden {
+            display: none;
+        }
+        
+        .message-box {
+            display: none; /* Hidden by default, will be shown with JS */
+            position: fixed;
+            top: 20px; 
+            left: 50%;
+            transform: translateX(-50%); /* Center the box */
+            background-color: #4CAF50; /* for Success */
+            color: white; 
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            z-index: 9999; /* Ensure it’s on top of other elements */
+            transition: opacity 0.3s ease-in-out; 
+        }
+
+        .message-box.error {
+            background-color: #f44336; 
+        }
+
+        .message-box.warning {
+            background-color: #ff9800; 
+        }
+   
+        @media (max-width: 768px) {
+        #left-panel.hidden {
+            display: none;
+        }
+            
+        .left-panel {
+            position: relative;
+            left: 0;
+            top: 0;
+            text-align: center;
+        }
+
+        .right-panel, .right-panel2 {
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+        
+        .right-panel2 {
+            width: 100%;
+            height: auto; 
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .right-panel2 form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .right-panel2 .btn-custom {
+            width: 100%; 
+            max-width: 300px;
+        }
+        
+        .panel {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        /* Hide panels on small screens by default */
+        #signInPanel, #RegisterPanel {
+            display: none;
+        }
+
+        .active {
+            display: block !important;
+        }
+
+    }
