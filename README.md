@@ -111,14 +111,16 @@ task_manager/
     pip install -r requirements.txt
 
 4. **Set up your `.env` file**
+
     Create a `.env` file in the root directory and add:
-        ```env
-        SECRET_KEY=your_secret_key
-        DB_NAME=your_db_name
-        DB_USER=your_username
-        DB_PASSWORD=your_password
-        DB_HOST=localhost
-        DB_PORT=3306
+
+    ```env
+    SECRET_KEY=your_secret_key
+    DB_NAME=your_db_name
+    DB_USER=your_username
+    DB_PASSWORD=your_password
+    DB_HOST=localhost
+    DB_PORT=3306
 
 5. **Apply migrations**
     ```bash
