@@ -70,7 +70,7 @@ task_manager/
 │   │       │   ├── personal.js
 │   │       │   └── skill_career.js
 │   │       └── images/
-│   │           └── yourimage.png
+│   │           └── image.png
 │   ├── templates/
 │   │   ├── dashboard.html
 │   │   ├── home.html
@@ -87,6 +87,9 @@ task_manager/
 ├── .env
 ├── .gitignore
 ├── manage.py
+├── requirements.txt
+├── README.md
+
 ```
 
 ---
