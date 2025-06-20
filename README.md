@@ -102,14 +102,17 @@ task_manager/
    cd gamified-task-manager
 
 2. **Create and activate a virtual environment**
+    ```bash
     python -m venv env
     env\Scripts\activate  
 
 3. **Install the dependencies**
+    ```bash
     pip install -r requirements.txt
 
 4. **Set up your .env file**
     Create a .env file in the root directory and add:
+       ```bash
         SECRET_KEY=your_secret_key
         DB_NAME=your_db_name
         DB_USER=your_username
@@ -118,9 +121,11 @@ task_manager/
         DB_PORT=3306
 
 5. **Apply migrations**
+    ```bash
     python manage.py migrate
 
 6. **Run the development server**
+    ```bash
     python manage.py runserver
 
 
