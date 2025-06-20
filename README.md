@@ -110,9 +110,9 @@ task_manager/
     ```bash
     pip install -r requirements.txt
 
-4. **Set up your .env file**
-    Create a .env file in the root directory and add:
-       ```bash
+4. **Set up your `.env` file**
+    Create a `.env` file in the root directory and add:
+        ```env
         SECRET_KEY=your_secret_key
         DB_NAME=your_db_name
         DB_USER=your_username
@@ -128,6 +128,7 @@ task_manager/
     ```bash
     python manage.py runserver
 
+---
 
 ## 🙌 Acknowledgments
 - Built with passion by Malathi Grace
