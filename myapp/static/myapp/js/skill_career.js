@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const taskNameInput = document.getElementById('task-name');
     const categorySelect = document.getElementById('category');
     const durationSelect = document.getElementById('duration');
+    const notesInput = document.getElementById('notes');
+
     let editingTaskId = null;
 
     // Show and cancel form
@@ -26,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Clear form
     function clearForm() {
         taskForm.reset();
+        notesInput.value = '';
         subtasksContainer.innerHTML = `<input type="text" name="subtasks[]" placeholder="Enter subtask" class="subtask-input" required />`;
         editingTaskId = null;
     }
@@ -52,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: taskNameInput.value.trim(),
             category: categorySelect.value,
             duration: durationSelect.value,
+            notes: notesInput.value.trim(),
             subtasks: Array.from(document.getElementsByClassName('subtask-input'))
                 .map(input => input.value.trim())
                 .filter(title => title !== '')
@@ -133,12 +137,19 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderTask(task) {
         const taskDiv = document.createElement('div');
         taskDiv.className = 'task-box';
-        // taskDiv.style.backgroundColor = "#f4f4f4";
-
-
+    
         const title = document.createElement('h3');
         title.textContent = `${task.title} (${task.category}, ${task.duration})`;
+        taskDiv.appendChild(title); 
 
+           if (task.notes) {
+            const notesPara = document.createElement('p');
+            notesPara.innerHTML = `<strong>Notes:</strong> ${task.notes}`;
+            notesPara.style.marginTop = '10px';
+            notesPara.style.whiteSpace = 'pre-wrap';
+            notesPara.className = 'task-notes';
+            taskDiv.appendChild(notesPara);
+        }
         const subtaskList = document.createElement('ul');
         subtaskList.className = 'subtask-list';
 
@@ -212,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
         buttonWrapper.appendChild(editBtn);
         buttonWrapper.appendChild(deleteBtn);
 
-        taskDiv.append(title, subtaskList, progressBar, progressText, buttonWrapper);
+        taskDiv.append(subtaskList, progressBar, progressText, buttonWrapper);
         taskList.appendChild(taskDiv);
     }
 
@@ -226,6 +237,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('task-name').value = task.title;
         document.getElementById('category').value = task.category;
         document.getElementById('duration').value = task.duration;
+        
+        notesInput.value = task.notes || '';
 
         const subtasksContainer = document.getElementById('subtasks-list');
         subtasksContainer.innerHTML = ''; // Clear old subtasks

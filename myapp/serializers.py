@@ -11,7 +11,7 @@ class TaskSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Task
-        fields = ['id', 'title', 'category', 'duration', 'subtasks']
+        fields = ['id', 'title', 'category', 'duration', 'notes', 'subtasks']
 
     
     def create(self, validated_data):
@@ -28,11 +28,15 @@ class TaskSerializer(serializers.ModelSerializer):
         instance.title = validated_data.get('title', instance.title)
         instance.category = validated_data.get('category', instance.category)
         instance.duration = validated_data.get('duration', instance.duration)
+        instance.notes = validated_data.get('notes', instance.notes)
         instance.save()
 
         # Clear and recreate subtasks
         instance.subtasks.all().delete()
         for subtask_data in subtasks_data:
-            Subtask.objects.create(task=instance, **subtask_data)
-
+            Subtask.objects.create(
+                task=instance, 
+                title=subtask_data.get('title'),
+                is_completed=subtask_data.get('is_completed', False)
+            )
         return instance
