@@ -10,59 +10,60 @@
    
 </head>
 <body>
-
-    <div class="top-container">
-        <div class="title">🎮 Gamified Task Manager</div>
-         <p style="color: white; margin-top: 30px;">Current user: {{ request.user }}</p>
-        <div class="top-buttons">
-            <a href="{% url 'home' %}"><button>🏠 Home</button></a>
-            <a href="{% url 'logout' %}"> <button>🔒 Logout</button></a>
-                
-        </div>
-    </div>
     
-
-    <div class="container">
-        <div class="outer-container">
-            <div class="category">
-                <h2>PERSONAL BLOOM:</h2>
-                <div class="info-row"><span>Streak:</span> <span id="personalStreak"></span></div>
-                <div class="info-row"><span>Points:</span> <span id="personalPoints">0</span></div>
-                <div class="info-row"><span>Badge:</span> <span id="personalBadge">None</span></div>
-                <div class="info-row"><span>Task Completed:</span> <span id="personalTasks">0/8</span></div>
-                <div class="info-row progress-container">
-                    <span>Progress:</span>
-                    <div class="bar-container">
-                        <div class="progress-bar">
-                            <div class="progress" id="personalProgress"></div>
-                        </div>
-                    </div>    
-                    <span id="personalProgressText" class="progress-text" ></span>
-            </div>
-            <a href="{% url 'personal' %}" class="resume-btn">Resume</a>
+    <div class="top-container">
+        <div class="title">
+            <h2>🎮 Gamified Task Manager</h2>
+             <p>User: {{ request.user }}</p>
         </div>
+        <ul class="top-buttons">
+           <li> <a href="{% url 'home' %}">🏠 Home</a></li>
+           <li> <a href="{% url 'logout' %}">🔒 Logout</a></li>
+        </ul>   
     </div>
-        
-    <div class="outer-container">
-        <div class="category">
-            <h2>SKILL SPRINT:</h2>
-            <div class="info-row"><span>Points:</span> <span id="skillPoints">{{ careerPoints }}</span></div>
-            <div class="info-row"><span>Badge:</span> <span id="skillBadge">{{ careerBadge }}</span></div>
-            <div class="info-row"><span>Category:</span> <span id="categoryCount">{{ categoryCount }}</span></div>
-            <div class="info-row"><span>Tasks Completed:</span> <span id="careerTasks">{{ careerTasksCompleted }}</span></div>
-            <div class="info-row progress-container">
-                <span>Progress:</span>
-                <div class="bar-container">
-                    <div class="progress-bar">
-                        <div class="progress" id="skillProgress"></div>
+
+
+        <div class="container">
+            <div class="outer-container">
+                <div class="category">
+                    <h2>PERSONAL BLOOM:</h2>
+                    <div class="info-row"><span>Streak:</span> <span id="personalStreak"></span></div>
+                    <div class="info-row"><span>Points:</span> <span id="personalPoints">0</span></div>
+                    <div class="info-row"><span>Badge:</span> <span id="personalBadge">None</span></div>
+                    <div class="info-row"><span>Task Completed:</span> <span id="personalTasks">0/8</span></div>
+                    <div class="info-row progress-container">
+                        <span>Progress:</span>
+                        <div class="bar-container">
+                            <div class="progress-bar">
+                                <div class="progress" id="personalProgress"></div>
+                            </div>
+                        </div>    
+                        <span id="personalProgressText" class="progress-text" ></span>
                     </div>
+                    <a href="{% url 'personal' %}" class="resume-btn">Resume</a>
                 </div>
-                <span id="skillProgressText" class="progress-text" ></span> 
             </div>
-            <a href="{% url 'skill' %}" class="resume-btn">Resume</a>
+            
+            <div class="outer-container">
+                <div class="category">
+                    <h2>SKILL SPRINT:</h2>
+                    <div class="info-row"><span>Points:</span> <span id="skillPoints">{{ careerPoints }}</span></div>
+                    <div class="info-row"><span>Badge:</span> <span id="skillBadge">{{ careerBadge }}</span></div>
+                    <div class="info-row"><span>Category:</span> <span id="categoryCount">{{ categoryCount }}</span></div>
+                    <div class="info-row"><span>Tasks Completed:</span> <span id="careerTasks">{{ careerTasksCompleted }}</span></div>
+                    <div class="info-row progress-container">
+                        <span>Progress:</span>
+                        <div class="bar-container">
+                            <div class="progress-bar">
+                                <div class="progress" id="skillProgress"></div>
+                            </div>
+                        </div>
+                        <span id="skillProgressText" class="progress-text" ></span> 
+                    </div>
+                    <a href="{% url 'skill' %}" class="resume-btn">Resume</a>
+                </div>
+            </div>
         </div>
-    </div>
-
     <footer>
         <div class="footer-columns">
             <div>
@@ -106,7 +107,10 @@
                 <i class="fab fa-instagram"></i>
             </p>
         </div>
-    </footer>
+    </footer> 
+
+
+
 
     <script src="{% static 'myapp/js/dashboard.js' %}"></script>
 
